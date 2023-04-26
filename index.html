@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="root.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <script src="https://kit.fontawesome.com/072f2fd706.js" crossorigin="anonymous"></script>
+    <title> Cupid FIFTY-FIFTY </title>
+
+</head>
+<body>
+    <div id="wrapper">
+        <audio id="song" src="cupid.mp3"></audio>
+        <div class="left">
+
+            <p class="name" id="name"> Cupid </p>
+            <p class="artist" id="artist"> FIFTY FIFTY </p>
+            <img id="image" src="cupid.jpg">
+            <input type="range" value="0" id="progress"> 
+            <div class="button">
+            <i class="fa-solid fa-play" id="play" onclick="playsong()"></i>
+            <i class="fa-solid fa-arrow-rotate-left" id="repeat" onclick="repeatsong()"></i>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <p class="musiclist"> Lyrics </p>
+            <ul class = "songlyrics">
+                <p class="lyrics">A hopeless romantic all my life</p>
+                <p class="lyrics">Surrounded by couples all the time</p>
+                <p class="lyrics">I guess I should take it as a sign</p>
+                <p class="lyrics">I'm feeling lonely (Lonely)</p>
+                <p class="lyrics">Oh, I wish I'd find a lover that could hold me (Hold me)</p>
+                <p class="lyrics">Now, I'm crying in my room</p>
+                <p class="lyrics">So skeptical of love</p>
+                <p class="lyrics">But still, I want it more, more, more</p>
+                <p class="lyrics">I gave a second chance to Cupid</p>
+                <p class="lyrics">But now, I'm left here feeling stupid</p>
+                <p class="lyrics">Oh, the way he makes me feel</p>
+                <p class="lyrics">That love isn't real</p>
+                <p class="lyrics">Cupid is so dumb</p>
+                <br>
+                <p class="lyrics">I look for his arrows every day</p>
+                <p class="lyrics">I guess he got lost or flew away</p>
+                <p class="lyrics">Waiting around is a waste (Waste)</p>
+                <p class="lyrics">Been counting the days since November</p>
+                <p class="lyrics">Is loving as good as they say?</p>
+                <p class="lyrics">Now I'm so lonely (Lonely)</p>
+                <p class="lyrics">Oh, I wish I'd find a lover that could hold me (Hold me)</p>
+                <p class="lyrics">Now, I'm crying in my room</p>
+                <p class="lyrics">So skeptical of love</p>
+                <p class="lyrics">But still, I want it more, more, more</p>
+                <p class="lyrics">I gave a second chance to Cupid</p>
+                <p class="lyrics">But now, I'm left here feeling stupid</p>
+                <p class="lyrics">Oh, the way he makes me feel</p>
+                <p class="lyrics">That love isn't real</p>
+                <p class="lyrics">Cupid is so dumb</p>
+                <br>
+                <p class="lyrics">Hopeless girl is seeking</p>
+                <p class="lyrics">Someone who will share this feeling</p>
+                <p class="lyrics">I'm a fool</p>
+                <p class="lyrics">A fool for love, a fool for love</p>
+                <p class="lyrics">Hopeless girl is seeking</p>
+                <p class="lyrics">I gave a second chance to Cupid</p>
+                <p class="lyrics">But now, I'm left here feeling stupid</p>
+                <p class="lyrics">Oh, the way he makes me feel</p>
+                <p class="lyrics">That love isn't real</p>
+                <p class="lyrics">Cupid is so dumb</p>
+
+
+
+            </ul>
+
+        </div>
+    </div>
+
+<script>
+let repeat = document.getElementById("repeat");
+let song = document.getElementById("song");
+let button = document.getElementById("play");
+let progress = document.getElementById("progress");
+    
+song.onloadedmetadata = function() {
+progress.max = song.duration;
+progress.value = song.currentTime;
+
+}
+
+
+function playsong() {
+
+    if(button.classList.contains("fa-pause")) {
+        song.pause();
+        button.classList.remove("fa-pause");
+        button.classList.add("fa-play");
+    } else {
+        song.play();
+        button.classList.add("fa-pause");
+        button.classList.remove("fa-play");
+    }
+}
+
+if(song.play()){
+    setInterval(()=>{
+        progress.value = song.currentTime;
+    }, 500);
+}
+
+progress.onchange = function() {
+    song.play();
+    song.currentTime = progress.value;
+    button.classList.add("fa-pause");
+    button.classList.remove("fa-play");
+}
+
+function repeatsong() {
+    song.currentTime = 0;
+    song.play();
+    button.classList.add("fa-pause");
+    button.classList.remove("fa-play");
+}
+
+</script>
+
+
+</body>
+</html>
